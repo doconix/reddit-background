@@ -1,20 +1,20 @@
 reddit-background
 =================
 
-Set your Mac OS X or Linux desktop background to images pulled from [Reddit](https://reddit.com)
+Set your macOS or Linux desktop background to images pulled from [Reddit](https://reddit.com)
 
 ![Screenshot](https://raw.githubusercontent.com/rconradharris/reddit-background/master/screenshot.jpg)
 
 Features
 --------
 
-- Supports multiple monitors (Mac OS X only)
+- Supports multiple monitors (macOS only)
 - Handles multiple subreddits
-- Aspect ratio and resolution filtering ensures your backgrounds are always beautiful
+- Aspect ratio and resolution filtering ensure your backgrounds are always beautiful
 - Flexible sorting lets you choose the quality of images it downloads
 - Optionally imprints the title on each image
 - Can pick images that match the current season
-- Download only option (`--image-count`) if you want to use OS X's existing
+- Download only option (`--image-count`) if you want to use macOS' existing
   folder-based background selector
 
 Try It
@@ -45,7 +45,7 @@ The easiest way to install reddit-background is to copy it to
 Configure It
 ------------
 
-If you'd like to customize reddit-background so that it chooses images images
+If you'd like to customize reddit-background so that it chooses images 
 from different subreddits, you can provide a configuration file at
 `~/.reddit-background.conf`. Samples configuration files are provided in the
 [examples](https://github.com/rconradharris/reddit-background/tree/master/examples)
@@ -141,10 +141,10 @@ This will set the background on desktop 1 to one of the 5 hottest posts from
 By default reddit-background will download a single image per desktop and set
 that to your desktop's background.
 
-In addition, you can use OS X's native folder-based background selector which
+In addition, you can use macOS' native folder-based background selector which
 offers additional features.
 
-To use OS X's background selector, you tell `reddit-background` to download a
+To use macOS' background selector, you tell `reddit-background` to download a
 set number of images using the `--image-count` option. This will download these
 images into the download directory but not actually set them as the
 background. You then set `System Preferences -> Desktop -> Backgrounds` to
@@ -172,7 +172,7 @@ Currently, `fit` is the only scaling option available.
 ### Show Title of Image
 
 If you'd like to know the title of the background you're looking at, you have
-three different options.
+two different options.
 
 First, on the command-line you can run:
 
@@ -180,12 +180,7 @@ First, on the command-line you can run:
     Desktop 1
         Perth, Western Australia, from Elizabeth Quay [5376x3024].jpg
 
-Second, you can enable the `desktop_symlinks=True` configuration. This
-will place a symlink on you desktop to your current images. This gives you
-easy access to the image, but more importantly, shows you the title of the
-image.
-
-Third, you can imprint the title directly on the image itself.  This option
+Second, you can imprint the title directly on the image itself.  This option
 requires that you load additional modules into Python.  This option works
 best when paired with `image_scaling=fit`.
 
@@ -216,7 +211,7 @@ Configuration can be done globally in the `[default]` section or per desktop.
 If you specify desktop sections, the default section is entirely ignored.
 The options are as follows:
 
-    imprint_position=<horizontal> <vertical>
+    imprint_position=<horizontal>:<vertical>
     imprint_size=[box width]:[margin]:[padding]:[transparency]
     imprint_font=[font filename]:[font size]:[font color]
 
@@ -227,20 +222,20 @@ imprinting.  The others are optional.
 |---------------|----------------------------------------------------------|---------|
 | horizontal    | top, center, bottom                                      | center  |
 | vertical      | left, center, right                                      | center  |
-| box width     | number of pixels before line wrap                        | 500     |
+| box width     | number of pixels before line wrap                        | 'auto'  |
 | margin        | number of pixels from the edge of image                  | 50      |
 | padding       | number of pixels inside of text box                      | 8       |
 | transparency  | number from 0 to 100 for percent transparency (text box) | 40      |
 | font filename | filename of TrueType font on your system to use          | Arial   |
 | font size     | font size                                                | 50      |
-| font color    | hex code: #112233, or RGB triple: (255, 128, 75)         | #E8BC61 |
+| font color    | hex code: #112233, or RGB triple: (255, 128, 75)         | #CCCCCC |
 
 Example 1: the following configuration places the title at the bottom-left corner of the image. It
 uses the defaults for font and size:
 
     [default]
     image_scaling=fit
-    imprint_position=bottom left
+    imprint_position=bottom:left
 
 Example 2: the following configuration centers the title 200 pixels from the top of the image.  It won't
 wrap lines because the box width is set so large.  The zero transparency makes the box background
@@ -248,7 +243,7 @@ invisible. A custom font, size, and color are set.
 
     [default]
     image_scaling=fit
-    imprint_position=top center
+    imprint_position=top:center
     imprint_size=2000:200:10:0
     imprint_font=Perpetual Bold:20:#3CB371
 
@@ -274,7 +269,7 @@ your desired color to be read regardless of the image colors beneath the title.
 
 Options can be specified on the command line, as in the following example:
 
-    reddit-background --imprint-position="top right" --imprint-size=1000:500:100:70 --imprint-font="Arial:50:#888888"
+    reddit-background --imprint-position="top:right" --imprint-size=1000:500:100:70 --imprint-font="Arial:50:#888888"
 
 ### Image Choosing Algorithms
 
